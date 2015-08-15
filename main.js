@@ -18,10 +18,22 @@ playerInst.setup({
 });
 playerInst.setVolume(20);
 
+function isURL(str){
+    return true;
+}
+
+function addURL(url){
+    if (isURL(url)) {
+        var playlist = playerInst.getPlaylist();
+        playlist.push({file: url});
+        playerInst.load(playlist);
+    }
+}
+
 $(document).ready(function(){
   $("#playButton").click(function(){
     // .attr("value") does not make sense
-    playerInst.load([{file: $("#urlInput").val()}]);
+    addURL($("#urlInput").val());
     $("#urlInput").val("");
   });
 });
