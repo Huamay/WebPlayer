@@ -1,0 +1,12 @@
+<rss version="2.0" xmlns:jwplayer="http://rss.jwpcdn.com/">
+  <channel>
+    <title>Sample</title>
+    <link>http:/carboncook.github.io/WebPlayer</link>
+    <description>...</description>
+    <item>
+      <title>(unknown)</title>
+      <description>...</description>
+      <jwplayer:source file="https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4" type="video/mp4"/>
+    </item>
+  </channel>
+</rss>

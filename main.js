@@ -8,14 +8,14 @@ jwplayer.key = "FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";
 
 var playerInst = jwplayer("playerContainer");
 playerInst.setup({
-    playlist: [{
+    playlist: "./playlist/sample.rss",/*[{
         file: "https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4"
     }, {
         file: "https://pgli32.dl.openload.io/dl/l/rS8anF5EjVE/%E7%9B%9C%E5%A2%93%E8%BF%B7%E5%9F%8E~%E9%AD%94%E5%92%92.avi.mp4"
     }, {
         file: "http://159i.com/video/get.php?url=akH1R509cHM6Ly9yZWRpcmVjdG9yLmdvb2dsZXZpZGVvLmNvbS92aWRlb3BsYXliYWNrP3JlcXVpcmVzc2w9eWVzJmlkPWJlMjU2ZmU5ZjdiMWVjNjUmaXRhZz0xOCZzb3VyY2U9cGljYXNhJmNtbz1zZWN1cmVfdHJhbnNwb3J0JTNEeWVzJmlwPTAuMC4wLjAmaXBiaXRzPTAmZXhwaXJlPTE0Mzk2NTc2MzQmc3BhcmFtcz1yZXF1aXJlc3NsLGlkLGl0YWcsc291cmNlLGlwLGlwYml0cyxleHBpcmUmc2lnbmF0dXJlPUQ5OEIwOUZDQzBBNUZCQkU0MjUyRUUwNEZGNERGQTNFNDA0MTIzN0QuQjM1RUQ1QTRBODVCMTdBRUYyRDRFMEFCNzVCMUIxMzU4QUVEQjRDNSZrZXk9bGgx",
         type: "video/mp4"
-    }],
+    }],*/
     aspectratio: "16:9",
     width: "100%"
 });
