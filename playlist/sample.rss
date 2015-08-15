@@ -4,8 +4,13 @@
     <link>http:/carboncook.github.io/WebPlayer</link>
     <description>...</description>
     <item>
-      <title>(unknown)</title>
-      <description>...</description>
+      <jwplayer:title>(unknown)</jwplayer:title>
+      <jwplayer:description>...</jwplayer:description>
+      <jwplayer:source file="https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4" type="video/mp4"/>
+    </item>
+    <item>
+      <jwplayer:title>(unknown)</jwplayer:title>
+      <jwplayer:description>...</jwplayer:description>
       <jwplayer:source file="https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4" type="video/mp4"/>
     </item>
   </channel>

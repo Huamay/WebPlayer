@@ -58,8 +58,8 @@ class RSSDoc:
         if self.channel is None:
             self.createChannel()
         item = ET.SubElement(self.channel, 'item')
-        ET.SubElement(item, 'title').text = mitem.title
-        ET.SubElement(item, 'description').text = mitem.description
+        ET.SubElement(item, 'jwplayer:title').text = mitem.title
+        ET.SubElement(item, 'jwplayer:description').text = mitem.description
         if mitem.image is not None:
             ET.SubElement(item, 'jwplayer:image').text = mitem.image
         for source in mitem.sources:
@@ -70,6 +70,9 @@ class RSSDoc:
 def listgener():
     rssDoc = RSSDoc()
     rssDoc.createChannel('Sample', 'http:/carboncook.github.io/WebPlayer', '...')
+    item = MediaItem()
+    item.addSource('https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4')
+    rssDoc.addItem(item)
     item = MediaItem()
     item.addSource('https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4')
     rssDoc.addItem(item)
