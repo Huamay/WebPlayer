@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <header>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <meta name="description" content="">
+    <meta name="author" content="CarbonCook">
+    <!--<link rel="icon" href="./logo.jpg">-->
+
+    <title>CCookPlayer</title>
+
+  </header>
+
+  <body>
+    
+    <div id="playerContainer">Loading the player...</div>
+
+    ​<script src="./jwplayer/jwplayer.js"></script>
+    <script>jwplayer.key="FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";</script>
+    <script type="text/javascript">
+    var playerInst = jwplayer("playerContainer");
+    playerInst.setup({
+      file: "https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4"
+    });
+    </script>
+  </body>
+</html>
