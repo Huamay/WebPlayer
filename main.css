@@ -1,0 +1,13 @@
+/*!
+ * WebPlayer v0.1.0 (http://carboncook.github.io/WebPlayer)
+ * Copyright 2015- CarbonCook
+ * Licensed under the MIT license
+ */
+
+body {
+  min-width: 900px;
+  cursor: auto;
+}
+#mainContainer {
+  position: relative;
+}

@@ -7,23 +7,63 @@
   
     <meta name="description" content="">
     <meta name="author" content="CarbonCook">
-    <!--<link rel="icon" href="./logo.jpg">-->
+    <link rel="icon" href="./logo.png">
 
     <title>CCookPlayer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this webpage -->
+    <link href="./main.css" rel="stylesheet">
 
   </header>
 
   <body>
     
-    <div id="playerContainer">Loading the player...</div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img class="pull-left" alt="Brand" width="20" height="20" src="./logo.png">
+          <span>&nbspWebPlayer</span>
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input id="urlInput" type="text" class="form-control" placeholder="URL">
+          </div>
+          <button id="playButton" type="submit" class="btn btn-default">Play</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#" class="navbar-link">
+              <span class="glyphicon glyphicon-user" aria-hidden="true" aria-label=""></span> Login
+            </a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </nav>
 
+    <div id="mainContainer" class="container">
+      <div id="playerContainer">Loading the player...</div>
+      <p id="alert"></p>
+    </div>
+
+    <!-- JWPlayer core JavaScript -->
     ​<script src="./jwplayer/jwplayer.js"></script>
-    <script>jwplayer.key="FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";</script>
-    <script type="text/javascript">
-    var playerInst = jwplayer("playerContainer");
-    playerInst.setup({
-      file: "https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4"
-    });
-    </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="./jquery/1.11.3/jquery.min.js"></script>
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for this webpage -->
+    <script src="./main.js"></script>
+
   </body>
 </html>
