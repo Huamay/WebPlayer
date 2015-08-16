@@ -1,13 +1,17 @@
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as mdom
+import urllib2 as urllib
+from HTMLParser import HTMLParser
+import codecs, re, time
 
 class MediaItem:
     def __init__(self):
-        self.title = '(unknown)'
+        self.title = None
         self.description = '...'
         self.image = None
         self.sources = []
         self.tracks = []
+        self.previews = []
 
     def setTitle(self, title):
         self.title = title
@@ -24,6 +28,10 @@ class MediaItem:
     def addTrack(self, url, kind = '', label = None, default = False):
         self.tracks.append(dict(file = url, kind = kind, label = label, default = default))
 
+    def addPreview(self, url):
+        self.previews.append(url)
+
+
 class RSSDoc:
     def __init__(self):
         #ET.register_namespace('jwplayer',"http://rss.jwpcdn.com/")
@@ -38,7 +46,7 @@ class RSSDoc:
 
     def save(self, filename):
         reparsed = mdom.parseString(ET.tostring(self.root, 'utf-8'))
-        f = open(filename, 'w')
+        f = codecs.open(filename, 'w', 'utf-8')
         reparsed.documentElement.writexml(f, addindent = '  ', newl = '\n')
         f.close()
 
@@ -63,17 +71,119 @@ class RSSDoc:
         if mitem.image is not None:
             ET.SubElement(item, 'jwplayer:image').text = mitem.image
         for source in mitem.sources:
-            ET.SubElement(item, 'jwplayer:source', file=source['file'])
+            ET.SubElement(item, 'jwplayer:source', file=source['file'], label=source['label'])
         for track in mitem.tracks:
             ET.SubElement(item, 'jwplayer:track', file=track['file'], kind=track['kind'])
+        for preview in mitem.previews:
+            ET.SubElement(item, 'preview').text = preview
+
+
+class InnerHTMLParser(HTMLParser):
+    def __init__(self, item):
+        HTMLParser.__init__(self)
+        self.item = item
+        self.sta1 = 0 #for iframe
+        self.count = 0 #count iframes
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'img':
+            for attr in attrs:
+                if attr[0] == 'src':
+                    self.item.addPreview(attr[1])
+        elif tag == 'iframe':
+            for attr in attrs:
+                if attr[0] == 'src':
+                    self.handle_embedded(attr[1])
+
+    def handle_embedded(self, link):
+        req = urllib.Request(link)
+        html = urllib.urlopen(req).read().decode('utf-8')
+        searcher = re.compile(r'Component\("(.*)"\)')
+        self.count += 1
+        self.item.addSource(searcher.search(html).groups()[0], label = 'Part ' + str(self.count))
+
+
+class NoKeywordFoundError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+
+class MainHTMLParser(HTMLParser):
+    def __init__(self, item, keyword):
+        HTMLParser.__init__(self)
+        self.item = item
+        self.keyword = keyword
+        self.sta1 = 0; self.sta2 = 0 #for title and inner html
+
+    def handle_script(self, script):
+        inner_html = ''
+        try:
+            start = script.index('\'<') + 1
+            end = script.index('\'', start)
+            inner_html = script[start:end]
+        except ValueError:
+            print self.item.title
+            return
+        InnerHTMLParser(self.item).feed(inner_html)
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'h1' and len(attrs) == 0:
+            self.sta1 += 1
+        elif self.sta1 == 1 and tag == 'a':
+            self.sta1 += 1
+        elif self.sta1 == 2 and tag == 'img':
+            for attr in attrs:
+                if attr[0] == 'src':
+                    self.item.setImage(attr[1])
+        elif tag.lower() == 'span':
+            for attr in attrs:
+                if attr[0] == 'id' and attr[1] == 'main':
+                    self.sta2 += 1
+                    return
+        elif self.sta2 == 1 and tag.lower() == 'script':
+            self.sta2 += 1
+
+    def handle_endtag(self, tag):
+        if tag == 'h1' and self.sta1 == 1:
+            self.sta1 -= 1
+        elif self.sta1 == 2 and tag == 'a':
+            self.sta1 -= 1
+            if self.item.title is None or self.item.title.lower().find(self.keyword) == -1:
+                raise NoKeywordFoundError(self.item.title)
+        elif self.sta2 == 2 and tag.lower() == 'script':
+            self.sta2 -= 2
+
+    def handle_data(self, data):
+        if self.sta1 == 2:
+            self.item.setTitle(data)
+        elif self.sta2 == 2:
+            self.handle_script(data)
+
 
 def listgener():
+    keyword = 'PRESTIGE'
     rssDoc = RSSDoc()
-    rssDoc.createChannel('Sample', 'http:/carboncook.github.io/WebPlayer', '...')
-    item = MediaItem()
-    item.addSource('http://im.6820a829.b028f5c.cdn2c.videos2.yjcontentdelivery.com/3/c/3cd78117c735cc97cce6ea873035323e1390254930-480-266-400-h264.flv?rs=300&ri=1200&s=1439620390&e=1439793190&h=08e9ca7e5b241c3660cb1800cefcc7cd')
-    rssDoc.addItem(item)
-    rssDoc.save('rss_02.rss')
+    rssDoc.createChannel(keyword, 'http:/carboncook.github.io/WebPlayer', '@' + keyword)
+    keyword = keyword.lower()
+
+    index = 1; stime = time.time()
+    while True:
+        req = urllib.Request('http://18av.mm-cg.com/18av/' + str(index) + '.html')
+        htmlDoc = urllib.urlopen(req).read().decode('utf-8')
+        item = MediaItem()
+        mhp = MainHTMLParser(item, keyword)
+        try:
+            mhp.feed(htmlDoc)
+        except NoKeywordFoundError:
+            if item.title is None:
+                break
+        if item.title.lower().find(keyword) >= 0:
+            rssDoc.addItem(item)
+        if index % 100 == 0:
+            print index, time.time() - stime
+        index += 1
+
+    rssDoc.save(keyword + '.rss')
 
 if __name__ == '__main__':
     listgener()
