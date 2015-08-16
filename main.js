@@ -45,6 +45,6 @@ $( document ).ready( function() {
     $( "ul#rssMenu li" ).click( function( event ) {
         $( "ul#rssMenu li" ).removeClass( "active" );
         $( event.target ).parent().addClass( "active" );
-        playerInst.load( $( event.target ).html() );
+        playerInst.load( listpath + rsslist[ $( event.target ).html() ] );
     });
 });
