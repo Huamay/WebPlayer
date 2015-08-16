@@ -29,7 +29,7 @@ function normURL( str ) {
 function addURL( url ) {
     if ( ( url = normURL( url ) ) != null ) {
         var playlist = playerInst.getPlaylist();
-        playlist.push( {file: url, type: "video/mp4"} );
+        playlist.push( {file: url, type: "video/flv"} );
         playerInst.load( playlist );
     }
 }
