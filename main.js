@@ -5,6 +5,7 @@
  */
 
 //Load the rss list
+var rsslist;
 var listpath = "./playlist/";
 $.getScript( listpath + "rss_list.js");
 

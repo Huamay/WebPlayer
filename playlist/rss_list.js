@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  */
 
- var rsslist = {
+ rsslist = {
  	"Sample": "sample.rss",
  	"RSS 01": "rss_01.rss",
  	"RSS 02": "rss_02.rss"
