@@ -99,8 +99,12 @@ class InnerHTMLParser(HTMLParser):
         req = urllib.Request(link)
         html = urllib.urlopen(req).read().decode('utf-8')
         searcher = re.compile(r'Component\("(.*)"\)')
+        match = searcher.search(html)
         self.count += 1
-        self.item.addSource(searcher.search(html).groups()[0], label = 'Part ' + str(self.count))
+        if match is None:
+            print 'No file link found', self.item.title, link
+            return
+        self.item.addSource(match.groups()[0], label = 'Part ' + str(self.count))
 
 
 class NoKeywordFoundError(Exception):
@@ -166,7 +170,7 @@ def listgener():
     rssDoc.createChannel(keyword, 'http:/carboncook.github.io/WebPlayer', '@' + keyword)
     keyword = keyword.lower()
 
-    index = 1; stime = time.time()
+    index = 6799; count = 0; stime = time.time()
     while True:
         req = urllib.Request('http://18av.mm-cg.com/18av/' + str(index) + '.html')
         htmlDoc = urllib.urlopen(req).read().decode('utf-8')
@@ -179,9 +183,13 @@ def listgener():
                 break
         if item.title.lower().find(keyword) >= 0:
             rssDoc.addItem(item)
+            count += 1
+            if count % 10 == 0:
+                rssDoc.save(keyword + '_' + str(count) + '.rss')
         if index % 100 == 0:
-            print index, time.time() - stime
+            print index, count, time.time() - stime
         index += 1
+        break
 
     rssDoc.save(keyword + '.rss')
 
