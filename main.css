@@ -11,3 +11,6 @@ body {
 #mainContainer {
   position: relative;
 }
+#rssMenu>.active>a {
+  background-color: #d7d7d7;
+}
