@@ -8,7 +8,7 @@
 var rsslist;
 var listpath = "./playlist/";
 $.getScript( listpath + "rss_list.js", function(response, status) {
-    alert( response );
+    rsslist = response;
     alert( status );
 });
 
