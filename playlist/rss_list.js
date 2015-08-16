@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  */
 
-var listpath = "./playlist/"
+var listpath = "http://carboncook.github.io/WebPlayer/playlist/"
 var rsslist = {
     "Sample": "sample.rss",
     "RSS 01": "rss_01.rss",

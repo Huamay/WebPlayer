@@ -1,0 +1,12 @@
+<rss version="2.0" xmlns:jwplayer="http://rss.jwpcdn.com/">
+  <channel>
+    <title>Sample</title>
+    <link>http:/carboncook.github.io/WebPlayer</link>
+    <description>...</description>
+    <item>
+      <jwplayer:title>(unknown)</jwplayer:title>
+      <jwplayer:description>...</jwplayer:description>
+      <jwplayer:source file="http://159i.com/video/get.php?url=akH1R509cHM6Ly9yZWRpcmVjdG9yLmdvb2dsZXZpZGVvLmNvbS92aWRlb3BsYXliYWNrP3JlcXVpcmVzc2w9eWVzJmlkPWJlMjU2ZmU5ZjdiMWVjNjUmaXRhZz0xOCZzb3VyY2U9cGljYXNhJmNtbz1zZWN1cmVfdHJhbnNwb3J0JTNEeWVzJmlwPTAuMC4wLjAmaXBiaXRzPTAmZXhwaXJlPTE0Mzk2NTc2MzQmc3BhcmFtcz1yZXF1aXJlc3NsLGlkLGl0YWcsc291cmNlLGlwLGlwYml0cyxleHBpcmUmc2lnbmF0dXJlPUQ5OEIwOUZDQzBBNUZCQkU0MjUyRUUwNEZGNERGQTNFNDA0MTIzN0QuQjM1RUQ1QTRBODVCMTdBRUYyRDRFMEFCNzVCMUIxMzU4QUVEQjRDNSZrZXk9bGgx" type="video/mp4"/>
+    </item>
+  </channel>
+</rss>

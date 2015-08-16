@@ -35,13 +35,16 @@ function addURL( url ) {
 }
 
 $( document ).ready( function() {
+    //Add new media URL
     $( "#playButton" ).click( function() {
         // .attr("value") does not make sense
         addURL( $( "#urlInput" ).val() );
         $( "#urlInput" ).val( "" );
     });
+    //Select RSS File
     $( "ul#rssMenu li" ).click( function( event ) {
         $( "ul#rssMenu li" ).removeClass( "active" );
         $( event.target ).parent().addClass( "active" );
+        playerInst.load( $( event.target ).html() );
     });
 });
