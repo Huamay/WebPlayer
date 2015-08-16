@@ -7,7 +7,10 @@
 //Load the rss list
 var rsslist;
 var listpath = "./playlist/";
-$.getScript( listpath + "rss_list.js");
+$.getScript( listpath + "rss_list.js", function(response, status) {
+    alert( response );
+    alert( status );
+});
 
 //Set up the jwplayer
 jwplayer.key = "FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";
