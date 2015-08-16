@@ -18,7 +18,7 @@ class MediaItem:
     def setImage(self, url):
         self.image = url
 
-    def addSource(self, url, type = 'video/mp4', label = None, default = False):
+    def addSource(self, url, type = None, label = None, default = False):
         self.sources.append(dict(file = url, type = type, label = label, default = default))
 
     def addTrack(self, url, kind = '', label = None, default = False):
@@ -63,7 +63,7 @@ class RSSDoc:
         if mitem.image is not None:
             ET.SubElement(item, 'jwplayer:image').text = mitem.image
         for source in mitem.sources:
-            ET.SubElement(item, 'jwplayer:source', file=source['file'], type=source['type'])
+            ET.SubElement(item, 'jwplayer:source', file=source['file'])
         for track in mitem.tracks:
             ET.SubElement(item, 'jwplayer:track', file=track['file'], kind=track['kind'])
 
@@ -71,12 +71,9 @@ def listgener():
     rssDoc = RSSDoc()
     rssDoc.createChannel('Sample', 'http:/carboncook.github.io/WebPlayer', '...')
     item = MediaItem()
-    item.addSource('https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4')
+    item.addSource('http://im.6820a829.b028f5c.cdn2c.videos2.yjcontentdelivery.com/3/c/3cd78117c735cc97cce6ea873035323e1390254930-480-266-400-h264.flv?rs=300&ri=1200&s=1439620390&e=1439793190&h=08e9ca7e5b241c3660cb1800cefcc7cd')
     rssDoc.addItem(item)
-    item = MediaItem()
-    item.addSource('https://ph2dot.dl.openload.io/dl/l/3gdfWQ70_TU/heyzo0921.mp4')
-    rssDoc.addItem(item)
-    rssDoc.save('sample.rss')
+    rssDoc.save('rss_02.rss')
 
 if __name__ == '__main__':
     listgener()

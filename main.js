@@ -25,13 +25,14 @@ $( "ul#rssMenu li:first" ).after( "<li role=\"separator\" class=\"divider\"></li
 
 //Respond to operations on the page
 function normURL( str ) {
+    alert( str );
     return str;
 }
 
 function addURL( url ) {
     if ( ( url = normURL( url ) ) != null ) {
         var playlist = playerInst.getPlaylist();
-        playlist.push( {file: url, type: "video/flv"} );
+        playlist.push( { file: url/*, type: "video/flv"*/ } );
         playerInst.load( playlist );
     }
 }
