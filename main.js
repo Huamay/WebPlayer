@@ -10,7 +10,7 @@ jwplayer.key = "FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";
 var playerInst = jwplayer( "playerContainer" );
 playerInst.setup({
     playlist: /*listpath + rsslist["Sample"],*/[{
-        file: "http://im.6820a829.b028f5c.cdn2c.videos2.yjcontentdelivery.com/3/c/3cd78117c735cc97cce6ea873035323e1390254930-480-266-400-h264.flv?rs=300&ri=1200&s=1439620390&e=1439793190&h=08e9ca7e5b241c3660cb1800cefcc7cd"
+        file: "https://www.youtube.com/watch?v=EK9VI7sakY8"
     }],
     aspectratio: "16:9",
     width: "100%"
