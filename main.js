@@ -10,7 +10,7 @@ jwplayer.key = "FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";
 var playerInst = jwplayer( "playerContainer" );
 playerInst.setup({
     playlist: /*listpath + rsslist["Sample"],*/[{
-        file: "https://ph2doy.dl.openload.io/dl/l/yEltQ_7GSxs/081515_472.mp4"//https://www.youtube.com/watch?v=EK9VI7sakY8"
+        file: "https://www.youtube.com/watch?v=EK9VI7sakY8"//"https://ph2doy.dl.openload.io/dl/l/yEltQ_7GSxs/081515_472.mp4"
     }],
     aspectratio: "16:9",
     width: "100%"
@@ -25,7 +25,6 @@ $( "ul#rssMenu li:first" ).after( "<li role=\"separator\" class=\"divider\"></li
 
 //Respond to operations on the page
 function normURL( str ) {
-    //alert( str );
     return str;
 }
 
@@ -34,6 +33,7 @@ function addURL( url ) {
         var playlist = playerInst.getPlaylist();
         playlist.push( { file: url/*, type: "video/flv"*/ } );
         playerInst.load( playlist );
+        alert( url );
     }
 }
 
