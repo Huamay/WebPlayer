@@ -25,7 +25,7 @@ $( "ul#rssMenu li:first" ).after( "<li role=\"separator\" class=\"divider\"></li
 
 //Respond to operations on the page
 function normURL( str ) {
-    alert( str );
+    //alert( str );
     return str;
 }
 
