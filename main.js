@@ -9,9 +9,7 @@ jwplayer.key = "FWm+IP88iL6P1fsd9gQ9+EuYvq/x6Z8HnQEotw==";
 
 var playerInst = jwplayer( "playerContainer" );
 playerInst.setup({
-    playlist: /*listpath + rsslist["Sample"],*/[{
-        file: "https://www.youtube.com/watch?v=EK9VI7sakY8"//"https://ph2doy.dl.openload.io/dl/l/yEltQ_7GSxs/081515_472.mp4"
-    }],
+    playlist: listpath + rsslist["Sample"],
     aspectratio: "16:9",
     width: "100%"
 });

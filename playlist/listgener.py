@@ -170,7 +170,7 @@ def listgener():
     rssDoc.createChannel(keyword, 'http:/carboncook.github.io/WebPlayer', '@' + keyword)
     keyword = keyword.lower()
 
-    index = 2601; count = 78; stime = time.time()
+    index = 9047; count = 270; stime = time.time()
     while True:
         req = urllib.Request('http://18av.mm-cg.com/18av/' + str(index) + '.html')
         htmlDoc = urllib.urlopen(req).read().decode('utf-8')
