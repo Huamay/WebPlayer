@@ -7,6 +7,6 @@
 var listpath = "http://carboncook.github.io/WebPlayer/playlist/"
 var rsslist = {
     "Sample": "sample.rss",
-    "PRESTIGE": "prestige_080.rss",
-    "RSS 02": "rss_02.rss"
+    "PRESTIGE 1": "prestige_0080.rss",
+    "PRESTIGE 2": "prestige_0160.rss"
 };
