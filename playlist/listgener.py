@@ -107,16 +107,16 @@ class InnerHTMLParser(HTMLParser):
         self.item.addSource(match.groups()[0], label = 'Part ' + str(self.count))
 
 
-class NoKeywordFoundError(Exception):
+class EndParserError(Exception):
     def __init__(self, value):
         self.value = value
 
 
 class MainHTMLParser(HTMLParser):
-    def __init__(self, item, keyword):
+    def __init__(self, item, level):
         HTMLParser.__init__(self)
         self.item = item
-        self.keyword = keyword
+        self.level = level
         self.sta1 = 0; self.sta2 = 0 #for title and inner html
 
     def handle_script(self, script):
@@ -135,7 +135,7 @@ class MainHTMLParser(HTMLParser):
             self.sta1 += 1
         elif self.sta1 == 1 and tag == 'a':
             self.sta1 += 1
-        elif self.sta1 == 2 and tag == 'img':
+        elif self.sta1 == 2 and tag == 'img' and self.level != 0:
             for attr in attrs:
                 if attr[0] == 'src':
                     self.item.setImage(attr[1])
@@ -152,8 +152,8 @@ class MainHTMLParser(HTMLParser):
             self.sta1 -= 1
         elif self.sta1 == 2 and tag == 'a':
             self.sta1 -= 1
-            if self.item.title is None or self.item.title.lower().find(self.keyword) == -1:
-                raise NoKeywordFoundError(self.item.title)
+            if self.level == 0:
+                raise EndParserError(self.item.title)
         elif self.sta2 == 2 and tag.lower() == 'script':
             self.sta2 -= 2
 
@@ -164,34 +164,66 @@ class MainHTMLParser(HTMLParser):
             self.handle_script(data)
 
 
-def listgener():
+def getPages(contents, keyword):
+    f = codecs.open(contents, 'r', 'utf-8')
+    lines = f.readlines()
+    f.close()
+    pages = []
+    for line in lines:
+        page = line.split(' -> ')
+        if keyword in page[1].lower():
+            pages.append(page)
+    return pages
+
+def listgener(contents):
     keyword = 'PRESTIGE'
     rssDoc = RSSDoc()
     rssDoc.createChannel(keyword, 'http:/carboncook.github.io/WebPlayer', '@' + keyword)
     keyword = keyword.lower()
 
-    index = 9047; count = 270; stime = time.time()
-    while True:
-        req = urllib.Request('http://18av.mm-cg.com/18av/' + str(index) + '.html')
+    pages = getPages(contents, keyword);
+    count = 80; stime = time.time()
+    print 'begin parsing...', time.time() - stime
+    for page in pages[count:]:
+        req = urllib.Request(page[0])
         htmlDoc = urllib.urlopen(req).read().decode('utf-8')
         item = MediaItem()
-        mhp = MainHTMLParser(item, keyword)
-        try:
-            mhp.feed(htmlDoc)
-        except NoKeywordFoundError:
-            if item.title is None:
-                break
-        if item.title.lower().find(keyword) >= 0:
-            rssDoc.addItem(item)
-            count += 1
-            if count % 10 == 0:
-                rssDoc.save(keyword + '_' + str(count) + '.rss')
-        if index % 100 == 0:
-            print index, count, time.time() - stime
-        index += 1
+        #item.setTitle(page[1])
+        mhp = MainHTMLParser(item, 1)
+        mhp.feed(htmlDoc)
+        rssDoc.addItem(item)
+        count += 1
+        if count % 10 == 0:
+            rssDoc.save(keyword + '_' + str(count) + '.rss')
+            print count, time.time() - stime
         #break
 
     rssDoc.save(keyword + '.rss')
 
+def contgener(filename):
+    f = codecs.open(filename, 'a', 'utf-8')
+
+    index = 1; stime = time.time()
+    tempItem = MediaItem()
+    while True:
+        url = 'http://18av.mm-cg.com/di/' + str(index) + '.html'
+        req = urllib.Request(url)
+        html = urllib.urlopen(req).read().decode('utf-8')
+        tempItem.setTitle(None)
+        mhp = MainHTMLParser(tempItem, 0)
+        try:
+            mhp.feed(html)
+        except EndParserError as e:
+            if e.value is None:
+                break
+            f.write(url + ' -> ' + e.value + '\n')
+        if index % 100 == 0:
+            print index, time.time() - stime
+        index += 1
+    print index
+
+    f.close()
+
 if __name__ == '__main__':
-    listgener()
+    listgener('18av.conts')
+    #contgener('di.conts')
