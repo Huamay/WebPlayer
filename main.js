@@ -87,7 +87,8 @@ function initConfig() {
     //Select video
     $( ".panel-heading" ).click( function( event ) {
         playerInst.playlistItem( parseInt( $( event.target ).html() ) - 1 );
-        playerInst.pause(true);
+        playerInst.stop();
+        alert( playerInst.getState() );
         playerInst.stop();
     });
 }
