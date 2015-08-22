@@ -105,9 +105,9 @@ function loadPanelGroup( rssUrl ) {
             rmOldContents();
             var items = $( xml ).find( "item" );
             for ( var i = 0; i < items.size(); ) {
-                var idx = i / 50 + 1, accoId = "accordion" + idx;
+                var idx = i / 20 + 1, accoId = "accordion" + idx;
                 $( "#pagination" ).before( '<div class="panel-group" id="' + accoId + '" role="tablist" aria-multiselectable="true"></div>' );
-                for ( var j = 0; i < items.size() && j < 50; i ++, j ++ )
+                for ( var j = 0; i < items.size() && j < 20; i ++, j ++ )
                     addContentToPanelGroup( items.eq( i ), i + 1, idx );
                 $( "#paginNext" ).before( '<li><a href="#' + idx + '">' + idx + '</a></li>' );
             }
