@@ -6,7 +6,7 @@
     <item>
       <jwplayer:title>好想你 I MiSS U - Joyce Chu 四葉草@RED PEOPLE</jwplayer:title>
       <jwplayer:description>https://www.youtube.com/watch?v=fdQgPu3iUYk</jwplayer:description>
-      <jwplayer:source file="../media/好想你 I MiSS U - Joyce Chu 四葉草@RED PEOPLE.mp4"/>
+      <jwplayer:source file="./media/好想你 I MiSS U - Joyce Chu 四葉草@RED PEOPLE.mp4"/>
     </item>
     <item>
       <jwplayer:title>Five Minutes MakeUp Challenge五分钟化妆挑战</jwplayer:title>
