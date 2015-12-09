@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>新疆</title>
+  <style type="text/css">
+body {
+  margin: 0;
+}
+h1 {
+  color: #a52700;
+}
+#main {
+	width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#intro {
+  margin-top: 40px;
+  background-color: #eee;
+}
+#sight {
+  background-color: #ddf;
+}
+#sight .slider {
+  background-color: #bbd;
+}
+#life {
+  background-color: #dff;
+}
+#life .slider {
+  background-color: #bdd;
+}
+#food {
+  background-color: #ffd;
+}
+#food .slider {
+  background-color: #eeb;
+}
+.nav {
+  padding: 0;
+  margin: 0;
+  margin-top: -4px;
+  list-style: none;
+}
+.nav > li {
+  width: 33.33%;
+  position: relative;
+  display: block;
+  float: left;
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4b5e79;
+  color: #fff;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #ddd;
+  color: #333;
+}
+.jumbotron {
+  padding: 10px 60px;
+}
+.slider {
+  list-style: none;
+  border: 4px solid white;
+  margin: 20px 0px;
+}
+.slider p {
+  text-align: center;
+  color: #ff9b00;
+}
+.slider li {
+  display: none;
+}
+.slider .active {
+  display: block;
+}
+
+  </style>
+</head>
+
+<body>
+<script type="text/javascript">
+var timer0 = setInterval("play()", 3000)
+function pause() {
+  clearInterval(timer0)
+}
+function consume() {
+  timer0 = setInterval("play()", 3000)
+}
+</script>
+  <div id="main">
+    <img src="image/天山.jpg" width="100%">
+    <ul class="nav">
+      <li><a href="#sight" class="a-top">风景</a></li>
+      <li><a href="#life" class="a-top">风情</a></li>
+      <li><a href="#food" class="a-top">风味</a></li>
+    </ul>
+    <div id="intro">
+      <div class="jumbotron">
+        <h1><b>新疆</b></h1>
+        <p>新疆维吾尔自治区，简称新，位于中国西北边陲，首府乌鲁木齐，是中国五个少数民族自治区之一，也是中国陆地面积最大的省级行政区，面积166万平方公里，占中国国土总面积六分之一。</p>
+      </div>
+    </div>
+    <div class="jumbotron" id="sight">
+      <h1><b>没去过新疆，不敢说自己领略过大中国的美</b></h1>
+      <p>提起内蒙古，你会想到草原；宁夏，会想到沙漠；西藏，会想到高原；青海，会想到湖泊；黑龙江，会想到森林…….然而，新疆，几乎拥有了这一切的美景。</p>
+      <div class="slider" onmouseover="pause()" onmouseout="consume()">
+        <li class="active"><img src="./image/sight01.jpg" width="100%"><p>大西洋的最后一滴眼泪“赛里木湖”的湛蓝</p></li>
+        <li><img src="./image/sight02.jpg" width="100%"><p>库车大峡谷-大自然的鬼斧神工</p></li>
+        <li><img src="./image/sight03.jpg" width="100%"><p>江布拉克秋收后金黄的麦田</p></li>
+        <li><img src="./image/sight04.jpg" width="100%"><p>禾木村炊烟袅袅薄雾淡淡的清晨</p></li>
+        <li><img src="./image/sight05.jpg" width="100%"><p>随处可见的雪山</p></li>
+        <li><img src="./image/sight06.jpg" width="100%"><p>克拉玛依油田的瑰丽晚霞</p></li>
+        <li><img src="./image/sight07.jpg" width="100%"><p>总是灰蒙蒙的神秘白沙湖</p></li>
+        <li><img src="./image/sight08.jpg" width="100%"><p>世界上海拔最高的国门——红其拉甫国门</p></li>
+      </div>
+    </div>
+    <div class="jumbotron" id="life">
+      <h1><b>没去过新疆，不会知道原来同一个国度里还有这样的生活</b></h1>
+      <p>在新疆，世居民族多于13个，长居民族有47个。没有哪个民族能真正代表新疆。而正是因为有如此多的不同民族在同一片土地上共生共存，才有了新疆如此丰富、多样的人文风情。</p>
+      <div class="slider" onmouseover="pause()" onmouseout="consume()">
+        <li class="active"><img src="./image/life01.jpg" width="100%"><p>喀什噶尔老城，维族孩子好奇的目光</p></li>
+        <li><img src="./image/life02.jpg" width="100%"><p>动物巴扎里忙碌的柯尔克孜族父子和他们的牛羊</p></li>
+        <li><img src="./image/life03.jpg" width="100%"><p>塔吉克朋友见面时的贴面礼</p></li>
+        <li><img src="./image/life04.jpg" width="100%"><p>维族同胞的婚礼，每个人都盛装出席</p></li>
+        <li><img src="./image/life05.jpg" width="100%"><p>在瓦恰村，塔吉克族的鹰舞</p></li>
+        <li><img src="./image/life06.jpg" width="100%"><p>哈萨克族的毡房</p></li>
+      </div>
+    </div>
+    <div class="jumbotron" id="food">
+      <h1><b>没去过新疆，到哪里吃这些美食？</b></h1>
+      <p>说道新疆的美食，很多人最先想到的是羊肉串、手抓饭、大盘鸡、馕等，其实新疆地大物博，民族众多，各地美食决不限于上述这些，纳仁、烤全羊、烤包子、拉条子和油塔子等各种面食也都独具特色，来新疆旅行，必不可错过。</p>
+      <div class="slider" onmouseover="pause()" onmouseout="consume()">
+        <li class="active"><img src="./image/food01.jpg" width="100%"><p>吐鲁番的葡萄熟了,品种多到吃不完</p></li>
+        <li><img src="./image/food02.jpg" width="100%"><p>这里的羊肉串不叫羊肉串，叫烤肉</p></li>
+        <li><img src="./image/food03.jpg" width="100%"><p>新疆的拌面绝不是盖浇面</p></li>
+        <li><img src="./image/food04.jpg" width="100%"><p>各种各样的馕也会看得人眼花缭乱</p></li>
+        <li><img src="./image/food05.jpg" width="100%"><p>而馕的吃法更是很多样</p></li>
+        <li><img src="./image/food06.jpg" width="100%"><p>鸡是世人皆知的，但新疆的味道哪儿的也比不了</p></li>
+        <li><img src="./image/food07.jpg" width="100%"><p>丁炒面也是如此巨巨巨大的一盘</p></li>
+        <li><img src="./image/food08.jpg" width="100%"><p>吃多了会腻，几天不吃又会想的手抓饭</p></li>
+        <li><img src="./image/food09.jpg" width="100%"><p>干果三宝：若羌红枣、蓝莓干、无花果干</p></li>
+        <li><img src="./image/food10.jpg" width="100%"><p>完胜哈根达斯的手造冰激凌</p></li>
+        <li><img src="./image/food11.jpg" width="100%"><p>酸爽好喝到哭的酸牛奶</p></li>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+var sliders = document.getElementsByClassName("slider");
+var n_slider = sliders.length
+var indices = new Array()
+for (var i = 0; i != n_slider; ++i)
+  indices.push(1)
+function play() {
+  for (var i = 0; i != n_slider; ++i) {
+    var slide = sliders[i].childNodes[indices[i]]
+    slide.className = ""
+    next = nextSlide(sliders[i].childNodes, i)
+    next.className = "active"
+  }
+}
+function nextSlide(slides, i) {
+  while (++ indices[i] < slides.length) {
+    if (slides[indices[i]].tagName == null)
+      continue
+    return slides[indices[i]]
+  }
+  indices[i] = 1
+  return slides[1]
+}
+</script>
+  <embed src="./audio/刀郎 - 新疆好.mp3" hidden="true">
+</body>
+</html>
